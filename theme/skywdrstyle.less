@@ -1,0 +1,664 @@
+// out: ./skywdrstyle.css, compress: false
+
+
+/* --- COLORS --- */
+
+@back-dark:  #011D29;
+@back:       #011F2C;
+@back-light: #092734;
+
+@translucide: rgba(0, 36, 51, 0.7);
+
+@contour: #33505C;
+
+@fore:          #FFF;
+@fore-light:    #CCC;
+@fore-emphasis: #FF422E;
+@fore-hover:    #FF8C80;
+
+@error: #F00;
+
+@shadow: #000;
+
+
+/* --- MIXINS --- */
+
+.nopanel {
+  background: none;
+  border: none;
+}
+
+.box-shadow(@params) {
+  -webkit-box-shadow: @params;
+     -moz-box-shadow: @params;
+       -o-box-shadow: @params;
+          box-shadow: @params;
+}
+
+
+/* --- FONTS --- */
+
+@font-face {
+    font-family: uni-condensed;
+    src: url("fonts/uni05_53.ttf");
+    text-rendering: geometricPrecision;
+}
+
+@font-face {
+    font-family: uni;
+    src: url("fonts/uni05_54.ttf");
+    text-rendering: geometricPrecision;
+}
+
+@keyframes blink {
+    from { opacity: 0.5 }
+    to   { opacity: 1.0 }
+}
+
+
+/* --- GENERAL --- */
+
+/* COMMON LAYOUT */
+
+body {
+  background-image: url("images/background.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: @contour;
+  color: @fore;
+  padding: 0;
+  font-size: 14px;
+}
+
+#wrap {
+  padding: 0;
+  max-width: 1300px;
+}
+
+/* COMMON ELEMENTS */
+
+* { border-radius: 0 !important }
+
+hr, hr.dashed { border-top: 3px dotted @contour }
+
+a:link, a:visited {
+  color: @fore-emphasis;
+  transition: all 0.2s;
+}
+
+a:link:hover, a:visited:hover, a:active, a:visited:active {
+  color: @fore-hover !important;
+  text-decoration: none;
+}
+
+p.error {
+  color: @error;
+  font-family: uni-condensed;
+  font-weight: lighter;
+}
+
+/* PANELS */
+
+.panel { color:inherit }
+
+.panel.bg3, form > .panel {
+  background: @back;
+  border: 2px solid @contour;
+}
+
+.tabs .tab { margin-right: 2px }
+
+.tabs .tab > a, .tabs .tab > a:hover {
+  background: @back-light;
+  border: 2px solid @contour;
+  .box-shadow(none);
+  color: @fore-light;
+  bottom: -2px;
+  border-radius: 4px 4px 0 0 !important;
+  transition: color 0.2s; /* Allows link color transition ONLY */
+}
+
+.tabs .activetab > a, .tabs .activetab > a:hover {
+  background: @back;
+  color: @fore-emphasis;
+  border-bottom: none;
+  bottom: -3px;
+}
+
+/* FORMS */
+
+input, button, textarea, select, a.button, span.button {
+  color: @fore;
+  transition: all .2s;
+  .box-shadow(0 0 5px 1px transparent);
+  background: @back-dark !important;
+  border: 2px solid @contour !important;
+  border-radius: 5px 0 !important;
+}
+
+input:hover, button:hover, input:focus, a.button:hover, span.button:hover, textarea:hover, textarea:focus, select:hover, select:focus {
+  border: 2px solid @fore-emphasis !important;
+  .box-shadow(0 0 5px 1px @shadow);
+  text-shadow: inherit;
+}
+
+// Buttons
+
+.button, .button1, .button2 {
+  font-family: uni !important;
+  padding: 4px 10px;
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+a.button:hover, a.button .icon, a.button:hover .icon { color: @fore !important }
+
+input[value="Go"] { font-size: 1rem !important }
+
+/* TOOLTIPS */
+
+.dropdown {
+  .pointer {
+    border-color: @contour transparent;
+    .pointer-inner {
+      border-color: @back-light transparent;
+    }
+  }
+  .dropdown-contents {
+   	background: fade(@translucide, 90%);
+   	border: solid 1px @contour;
+    .box-shadow(1px 2px 4px @shadow);
+    .header {
+      font-family: uni;
+      text-shadow: none;
+      .header_setting a { padding: 0 }
+    }
+    .header      { border-bottom: 3px dotted @contour }
+    li           { border-top:    1px dotted @contour }
+    li.separator { border-top:    3px dotted lighten(@contour, 20%) }
+  }
+}
+
+/* RANDOM GENERIC STUFF */
+
+img.avatar { border-radius: 50% !important }
+
+/* --- SPECIFIC FEATURES --- */
+
+/* HEADER */
+
+.headerbar {
+  margin: 0;
+  padding: 0;
+  a { width: 100% }
+}
+
+#banner {
+  width: 100%;
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+// Navbar
+
+.bar-top {
+  padding-bottom: 20px;
+}
+
+.navbar {
+  background-color: @back;
+  .inner {
+    max-width: 1280px;
+    margin: auto;
+    li a {
+      span {
+        font-family: uni;
+        font-size: 1.4rem;
+        margin: 0 5px;
+      }
+      i { color: @fore }
+      .avatar {
+        max-height: 2.1rem;
+        border-radius: 50% !important;
+      }
+    }
+  }
+}
+
+// Breadcrumbs
+
+#nav-breadcrumbs {
+  border: none;
+  margin: 5px 0 30px 0;
+  .crumb {
+    font-family: uni-condensed;
+    font-size: 1.2em;
+    font-weight: lighter;
+  }
+}
+
+// Jumpbox
+
+.jumpbox-return, .advanced-search-link {
+  font-family: uni-condensed;
+  font-size: 1.2rem;
+  font-weight: lighter !important;
+  .arrows {
+    color: @fore;
+    padding-left:  10px;
+    padding-right: 0;
+    transition: all .2s;
+  }
+}
+
+.jumpbox-return:hover .arrows {
+  padding-left:  5px;
+  padding-right: 5px;
+}
+
+/* CONTENT */
+
+#page-body {
+  background-color: @translucide;
+  border-radius: 3px !important;
+  padding: 25px 50px;
+  margin: 30px 0;
+  border: 1px solid @contour;
+}
+
+h2, h3 {
+  color: @fore-emphasis;
+  font-family: uni;
+  font-weight: lighter;
+}
+
+h2 {
+  font-family: uni-condensed;
+  padding-bottom: 20px;
+}
+
+h3 {
+  border-bottom: dotted 3px @contour;
+  padding-top: 10px;
+}
+
+h2 .title-slashes {
+  color: @fore;
+  padding-left: 20px;
+}
+
+/* LISTS */
+
+.forabg, .forumbg, li.header {
+  border-radius: 5px 5px 0 0 !important;
+  margin-bottom: 10px;
+  background: @contour;
+}
+
+li.header {
+  padding: 8px 4px 12px 4px;
+  dd, dt {
+    text-shadow: 1px 1px 4px @shadow;
+    font-family: uni-condensed;
+    a { color: @fore }
+  }
+}
+
+.topiclist.forums li, .topiclist.topics li, tr.bg1, li.row {
+  background: @back;
+  border: none;
+  padding: 10px 15px;
+  a { font-weight: 600 }
+}
+
+.topiclist.forums li .list-inner, .topiclist.topics li .list-inner { padding-left: 70px }
+
+.topiclist.forums dd, .topiclist.topics dd {
+  border: none;
+  color: @fore;
+}
+
+// Images
+
+.forum_read            { background-image: url("./images/forum_read.gif") }
+.forum_read_locked     { background-image: url("./images/forum_read_locked.gif") }
+.forum_read_subforum   { background-image: url("./images/forum_read_subforum.gif") }
+.forum_unread          { background-image: url("./images/forum_unread.gif") }
+.forum_unread_locked   { background-image: url("./images/forum_unread_locked.gif") }
+.forum_unread_subforum { background-image: url("./images/forum_unread_subforum.gif") }
+
+.global_read        { background-image: url("./images/global_read.gif") }
+.global_read_mine   { background-image: url("./images/global_read_mine.gif") }
+.global_unread      { background-image: url("./images/global_unread.gif") }
+.global_unread_mine { background-image: url("./images/global_unread_mine.gif") }
+
+.topic_read               { background-image: url("./images/topic_read.gif") }
+.topic_read_mine          { background-image: url("./images/topic_read_mine.gif") }
+.topic_read_locked        { background-image: url("./images/topic_read_locked.gif") }
+.topic_read_locked_mine   { background-image: url("./images/topic_read_locked_mine.gif") }
+.topic_read_hot           { background-image: url("./images/topic_read_hot.gif") }
+.topic_read_hot_mine      { background-image: url("./images/topic_read_hot_mine.gif") }
+.topic_unread             { background-image: url("./images/topic_unread.gif") }
+.topic_unread_mine        { background-image: url("./images/topic_unread_mine.gif") }
+.topic_unread_locked      { background-image: url("./images/topic_unread_locked.gif") }
+.topic_unread_locked_mine { background-image: url("./images/topic_unread_locked_mine.gif") }
+.topic_unread_hot         { background-image: url("./images/topic_unread_hot.gif") }
+.topic_unread_hot_mine    { background-image: url("./images/topic_unread_hot_mine.gif") }
+
+/* TOPIC */
+
+// Post
+
+.post, .post.pm {
+  background: @back;
+  border: 8px solid @contour;
+  margin: 0;
+  padding: 10px;
+}
+
+.divider + .post { border-top: none }
+
+.post .content, .post:target .content { color: @fore }
+
+.post .author {
+  font-family: uni;
+  font-weight: lighter;
+  margin: 15px 5px;
+  font-size: 1.1rem;
+}
+
+.post:target h3 a {
+  color: @fore-emphasis;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in;
+}
+
+// Quote
+
+.post blockquote {
+  padding: 5px;
+  background: @contour;
+  border: none;
+  border-left: 3px solid @fore-emphasis;
+  blockquote {
+    background: @back;
+    blockquote { background: @contour }
+  }
+  cite { margin: 0 }
+}
+
+blockquote.uncited:before, blockquote cite:before {
+  content: "‟ ";
+  font-family: "Book Antiqua", "Times New Roman", times, serif;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 10px;
+  vertical-align: bottom;
+}
+
+// Code
+
+.codebox {
+  padding: 5px;
+  background: @contour;
+  border: none;
+  border-left: 3px solid @fore-emphasis;
+  code {
+    color: @fore;
+    overflow: auto;
+    max-height: 2000px;
+  }
+}
+
+.codebox > p { border: none }
+
+// Post profile
+
+.postprofile {
+  color: @fore-light;
+  border: none;
+}
+
+@media (min-width: 700px) {
+  .postprofile > * { text-align: center }
+
+  .postprofile {
+    strong { color: inherit }
+    .has-avatar .avatar-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    a.avatar { width: 100% }
+    .avatar img {
+      float: none !important;
+      margin: auto;
+      width: 90px;
+    }
+  }
+
+  .profile-rank { margin: 0 }
+
+  .profile-posts { margin-top: 15px }
+}
+
+// Signature
+
+.signature {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 300px;
+  color: @fore-light;
+  border-top: 3px dotted @contour;
+}
+
+/* POSTING */
+
+// Quick reply
+
+#qr_postform .panel {
+  .inner {
+    margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    .message-box {
+      width: 100%;
+    }
+  }
+  .nopanel;
+}
+
+// Drafts list
+
+.drafts-list {
+  margin: 10px 0 35px 0;
+  dt .list-inner { padding-left: 0 !important }
+}
+
+// Posting box
+
+#postingbox {
+  background: @back;
+  border: 8px solid @contour;
+  margin: 10px 0;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 0;
+  h3 {
+    background: @contour;
+    margin: 0;
+    padding: 0 0 5px 10px;
+    text-shadow: 1px 1px 4px @shadow;
+    font-family: uni-condensed;
+    font-variant: small-caps;
+    color: @fore;
+  }
+  .inner { padding: 18px 20px }
+}
+
+#postingbox label, #smiley-box { color: @fore }
+
+#postingbox + .panel.bg2 { .nopanel }
+
+#format-buttons{
+  select { padding: 4px 2px 5px 5px }
+  button {
+    .box-shadow(0 0 5px 1px transparent);
+    i {
+      color: @fore;
+      text-shadow: none;
+    }
+  }
+}
+
+// Topic review
+
+#topicreview {
+  .author {
+    float: left;
+    color: @fore;
+  }
+  .post-buttons {
+    float: right;
+    margin: 15px 5px;
+  }
+}
+
+#topicreview + hr {
+  margin-bottom: 20px;
+}
+
+/* CONFIRM */
+
+#confirm h2 {
+  color: @fore-emphasis;
+  border-bottom: 3px dotted @contour;
+}
+
+/* USER CONTROL PANEL */
+
+// Navigation
+
+li.active-subsection a::before {
+  content: ">> ";
+  color: @fore;
+  font-family: uni-condensed;
+}
+
+// Ucp panels
+
+.ucp-main > form, .ucp-main > form .panel, .ucp-main > .panel { .nopanel }
+
+.ucp-main > div {
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+.ucp-main h2 { color: @fore-emphasis }
+
+// Private messages
+
+#username_list, #options-panel { margin-bottom: 20px }
+
+#viewfolder .panel { .nopanel }
+
+ul.topiclist { margin-bottom: 0 }
+
+.topiclist.cplist {
+  border: 4px solid @contour;
+  border-radius: 0 !important;
+  margin-bottom: 25px;
+}
+
+/* SEARCH */
+
+// Members search
+
+form[data-field-name="username_list"] h2.solo { margin: 40px 0 0 0 }
+
+.member-search {
+  background-color: @back;
+  border: 2px solid @contour;
+  border-radius: 5px 0 !important;
+  font-family: uni-condensed;
+  font-size: 0.8rem;
+}
+
+#search_memberlist fieldset.fields1 {
+  dt { width: 10em }
+  dd { margin-left: 10em }
+}
+
+@media (max-width: 1000px) {
+  #search_memberlist .column1, .column2 {
+    float: none;
+    width: auto;
+  }
+}
+
+// Topics search
+
+form[action="./search.php"] .panel.bg3 { .nopanel }
+
+/* PROFILE */
+
+#viewprofile {
+  .panel:first-child { .nopanel }
+  img.avatar {
+    display:block;
+    margin:auto;
+  }
+}
+
+/* MEMBERS LIST */
+
+table.table1{
+  thead tr {
+    th {
+      text-shadow: 1px 1px 4px @shadow;
+      font-family: uni-condensed;
+    }
+    th:first-child { padding-left: 20px }
+  }
+  tbody {
+    tr, tr:hover {
+      border: none;
+      background: @back;
+      td {
+        border: none;
+        color: @fore;
+        padding: 10px 0;
+      }
+      td:first-child { padding-left: 20px }
+    }
+  }
+}
+
+/* FOOTER */
+
+.bar-bottom { padding-top: 14px }
+
+.copyright {
+  padding: 5px 0;
+  color: @fore;
+}
+
+#page-footer {
+  background-color: @back;
+  .copyright { padding: 20px 0 }
+}
+
+img[width="1"][height="1"] { display: none }
+
+/* MODAL */
+
+.phpbb_alert {
+  background: @back;
+  border: 1px solid @contour;
+}
+
+// TODO: Avatar in navbar
+// TODO: Socials links
