@@ -1,4 +1,4 @@
-// out: ./skywdrstyle.css, compress: false
+// out: ./skywdrstyle.css, compress: true
 
 
 /* --- COLORS --- */
@@ -12,10 +12,10 @@
 @contour: #33505C;
 
 @fore:          #FFF;
+@fore-soft:     @fore - #565656;
 @fore-light:    #CCC;
 @fore-emphasis: #FF422E;
 @fore-hover:    #FF8C80;
-
 @error: #F00;
 
 @shadow: #000;
@@ -137,7 +137,8 @@ input, button, textarea, select, a.button, span.button {
   border-radius: 5px 0 !important;
 }
 
-input:hover, button:hover, input:focus, a.button:hover, span.button:hover, textarea:hover, textarea:focus, select:hover, select:focus {
+input:hover, button:hover, input:focus, a.button:hover, span.button:hover,
+textarea:hover, textarea:focus, select:hover, select:focus {
   border: 2px solid @fore-emphasis !important;
   .box-shadow(0 0 5px 1px @shadow);
   text-shadow: inherit;
@@ -356,11 +357,14 @@ li.header {
   border: 8px solid @contour;
   margin: 0;
   padding: 10px;
+  .content, &:target .content {
+      color: @fore-soft;
+      font-size: 1.1em;
+  }
+  div[id|=div_post_reput] { display: none }
 }
 
 .divider + .post { border-top: none }
-
-.post .content, .post:target .content { color: @fore }
 
 .post .author {
   font-family: uni;
